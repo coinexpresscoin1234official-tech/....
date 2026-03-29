@@ -1,5 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"/><title>KS Tech</title></head>
-<body><p>Coming soon.</p></body>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KS TECH // EPOCH 12212345654456789866553</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<style>
+:root{--c1:#00fff7;--c2:#ff00c8;--c3:#ffe500;--c4:#00ff88;--bg:#000005;--bg2:#020008;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--c1);font-family:'Share Tech Mono',monospace;overflow-x:hidden;cursor:none;}
+
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,247,0.012) 2px,rgba(0,255,247,0.012) 4px);pointer-events:none;z-index:9990;}
+
+#cur{position:fixed;width:6px;height:6px;background:var(--c1);box-shadow:0 0 10px var(--c1),0 0 30px var(--c1);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);}
+#cur-outer{position:fixed;width:36px;height:36px;border:1px solid var(--c1);box-shadow:0 0 8px var(--c1),inset 0 0 8px rgba(0,255,247,0.1);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .25s,height .25s;}
+#cur-cross-h{position:fixed;height:1px;left:0;right:0;background:rgba(0,255,247,0.08);pointer-events:none;z-index:9989;}
+#cur-cross-v{position:fixed;width:1px;top:0;bottom:0;background:rgba(0,255,247,0.08);pointer-events:none;z-index:9989;}
+
+#c{position:fixed;inset:0;z-index:0;}
+
+@keyframes glitch1{0%,94%,100%{clip-path:none;transform:none}95%{clip-path:polygon(0 20%,100% 20%,100% 40%,0 40%);transform:translate(-4px,0)}97%{clip-path:polygon(0 60%,100% 60%,100% 80%,0 80%);transform:translate(4px,0)}99%{clip-path:none;transform:translate(2px,0)}}
+@keyframes glitch2{0%,96%,100%{opacity:0}96.5%{opacity:1;transform:translate(6px,-2px);color:var(--c2)}98%{opacity:1;transform:translate(-4px,2px);color:var(--c4)}99%{opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes sweep{to{left:200%;}}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+#hero{position:relative;z-index:10;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;overflow:hidden;}
+.epoch{font-size:10px;letter-spacing:4px;color:rgba(0,255,247,0.4);margin-bottom:20px;animation:fadeUp 1s .2s both;}
+.hero-ks-wrap{position:relative;display:inline-block;}
+.hero-ks{font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(70px,18vw,220px);line-height:.85;letter-spacing:-4px;color:transparent;-webkit-text-stroke:1px var(--c1);filter:drop-shadow(0 0 40px var(--c1)) drop-shadow(0 0 80px rgba(0,255,247,0.3));animation:fadeUp 1s .4s both,glitch1 7s 2s infinite;}
+.hero-ks-ghost{position:absolute;inset:0;font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(70px,18vw,220px);line-height:.85;letter-spacing:-4px;color:transparent;-webkit-text-stroke:1px var(--c2);animation:glitch2 7s 2s infinite;user-select:none;pointer-events:none;}
+.hero-tech{font-family:'Orbitron',sans-serif;font-size:clamp(14px,4vw,42px);font-weight:900;letter-spacing:clamp(8px,3vw,28px);color:var(--c2);filter:drop-shadow(0 0 20px var(--c2));margin-top:8px;animation:fadeUp 1s .6s both;}
+.hero-sub{font-size:clamp(8px,1.4vw,12px);letter-spacing:3px;color:rgba(255,0,200,0.4);margin-top:20px;animation:fadeUp 1s .8s both;max-width:600px;word-break:break-all;line-height:2;}
+.terminal-line{margin-top:40px;font-size:12px;color:var(--c4);letter-spacing:2px;animation:fadeUp 1s 1s both;}
+.cursor-blink{display:inline-block;width:8px;height:14px;background:var(--c4);vertical-align:middle;animation:blink .7s step-end infinite;margin-left:2px;}
+.scroll-ind{margin-top:50px;display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp 1s 1.3s both;color:rgba(0,255,247,0.3);font-size:10px;letter-spacing:4px;}
+.scroll-bar{width:1px;height:50px;background:linear-gradient(to bottom,var(--c1),transparent);animation:pulse 2s ease infinite;}
+
+.data-strip{position:relative;z-index:10;display:flex;border-top:1px solid rgba(0,255,247,0.1);border-bottom:1px solid rgba(0,255,247,0.1);background:rgba(0,255,247,0.02);overflow:hidden;}
+.data-strip::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,255,247,0.05),transparent);animation:sweep 3s linear infinite;}
+.data-cell{flex:1;padding:28px 16px;text-align:center;border-right:1px solid rgba(0,255,247,0.07);}
+.data-cell:last-child{border-right:none;}
+.data-val{font-family:'Orbitron',sans-serif;font-size:clamp(22px,4vw,40px);font-weight:900;color:var(--c1);display:block;filter:drop-shadow(0 0 10px var(--c1));}
+.data-key{font-size:9px;letter-spacing:3px;color:rgba(0,255,247,0.3);text-transform:uppercase;margin-top:6px;display:block;}
+
+.mq-wrap{position:relative;z-index:10;overflow:hidden;padding:12px 0;border-bottom:1px solid rgba(255,0,200,0.1);background:rgba(255,0,200,0.02);}
+.mq-track{display:flex;gap:40px;animation:mq 25s linear infinite;width:max-content;}
+.mq-item{font-size:10px;letter-spacing:5px;color:rgba(255,0,200,0.4);text-transform:uppercase;flex-shrink:0;}
+
+#apps{position:relative;z-index:10;padding:80px 20px;max-width:1400px;margin:0 auto;}
+.sec-head{text-align:center;margin-bottom:60px;}
+.sec-tag{font-size:10px;letter-spacing:6px;color:var(--c2);display:block;margin-bottom:12px;}
+.sec-title{font-family:'Orbitron',sans-serif;font-size:clamp(22px,4vw,44px);font-weight:900;color:var(--c1);filter:drop-shadow(0 0 20px var(--c1));letter-spacing:4px;}
+
+.app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1px;background:rgba(0,255,247,0.05);border:1px solid rgba(0,255,247,0.08);}
+
+.card{background:var(--bg2);padding:36px 32px;position:relative;overflow:hidden;opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s,background .3s;cursor:none;}
+.card.vis{opacity:1;transform:translateY(0);}
+.card::before,.card::after{content:'';position:absolute;width:16px;height:16px;border-color:var(--c1);border-style:solid;opacity:0;transition:opacity .3s;}
+.card::before{top:12px;left:12px;border-width:1px 0 0 1px;}
+.card::after{bottom:12px;right:12px;border-width:0 1px 1px 0;}
+.card:hover::before,.card:hover::after{opacity:1;}
+.card-sweep{position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,rgba(0,255,247,0.04) 50%,transparent 100%);transform:translateY(-100%);transition:transform .6s ease;pointer-events:none;}
+.card:hover .card-sweep{transform:translateY(100%);}
+.card:hover{background:#040012;}
+.card-num{font-size:9px;letter-spacing:4px;color:rgba(0,255,247,0.2);margin-bottom:16px;}
+.card-icon{font-size:32px;margin-bottom:18px;display:block;transition:transform .4s cubic-bezier(.22,1,.36,1),filter .4s;filter:grayscale(30%);}
+.card:hover .card-icon{transform:scale(1.2) rotate(-8deg);filter:grayscale(0%) drop-shadow(0 0 12px rgba(0,255,247,0.5));}
+.card-name{font-family:'Orbitron',sans-serif;font-size:15px;font-weight:900;color:#fff;letter-spacing:2px;margin-bottom:10px;transition:color .3s,filter .3s;}
+.card:hover .card-name{color:var(--c1);filter:drop-shadow(0 0 8px var(--c1));}
+.card-desc{font-size:11px;color:rgba(255,255,255,0.25);line-height:1.8;margin-bottom:28px;letter-spacing:.5px;}
+.card-btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:11px 22px;position:relative;overflow:hidden;border:1px solid var(--c1);color:var(--c1);background:rgba(0,255,247,0.05);transition:color .3s,box-shadow .3s,transform .2s;}
+.card-btn::before{content:'';position:absolute;inset:0;background:var(--c1);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.22,1,.36,1);z-index:0;}
+.card-btn span,.card-btn svg{position:relative;z-index:1;}
+.card-btn:hover::before{transform:scaleX(1);}
+.card-btn:hover{color:var(--bg);box-shadow:0 0 30px rgba(0,255,247,0.4);transform:translateY(-2px);}
+.card-btn svg{width:12px;height:12px;transition:transform .3s;}
+.card-btn:hover svg{transform:translateX(4px);}
+.status-dot{position:absolute;top:18px;right:18px;width:6px;height:6px;border-radius:50%;background:var(--c4);box-shadow:0 0 6px var(--c4),0 0 12px var(--c4);animation:dotPulse 2s ease infinite;}
+
+.hud{position:fixed;z-index:9980;pointer-events:none;font-size:9px;letter-spacing:2px;color:rgba(0,255,247,0.2);line-height:1.8;}
+.hud-tl{top:16px;left:16px;}
+.hud-tr{top:16px;right:16px;text-align:right;}
+.hud-bl{bottom:16px;left:16px;}
+.hud-br{bottom:16px;right:16px;text-align:right;}
+
+footer{position:relative;z-index:10;padding:50px 32px;border-top:1px solid rgba(0,255,247,0.07);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.ft-logo{font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;color:var(--c1);filter:drop-shadow(0 0 12px var(--c1));letter-spacing:4px;}
+.ft-copy{font-size:10px;color:rgba(0,255,247,0.2);letter-spacing:2px;}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-outer"></div>
+<div id="cur-cross-h"></div>
+<div id="cur-cross-v"></div>
+
+<div class="hud hud-tl">KS_TECH // NODE_01<br>EPOCH: 12212345654456789866553<br>STATUS: ONLINE</div>
+<div class="hud hud-tr">LAT: 23.2324°N<br>LON: 86.9682°E<br>BANKURA // WB // INDIA</div>
+<div class="hud hud-bl">SYS: NOMINAL<br>PING: 0.0001ms<br>UPTIME: ∞</div>
+<div class="hud hud-br" id="clock"></div>
+
+<canvas id="c"></canvas>
+
+<section id="hero">
+  <div class="epoch">// EPOCH 12212345654456789866553 · NEURAL MESH ACTIVE · QUANTUM UPLINK ESTABLISHED</div>
+  <div class="hero-ks-wrap">
+    <h1 class="hero-ks">KS</h1>
+    <div class="hero-ks-ghost">KS</div>
+  </div>
+  <div class="hero-tech">TECH</div>
+  <p class="hero-sub">STARDATE · 12212345654456789866553 · CIVILISATION TIER: OMEGA<br>QUANTUM LAUNCHPAD · NEURAL INTERFACE v∞.∞ · KIRAN SANKAR SYSTEMS</p>
+  <div class="terminal-line">&gt; INITIALISING APP MATRIX...<span class="cursor-blink"></span></div>
+  <div class="scroll-ind"><span>SCROLL DOWN</span><div class="scroll-bar"></div></div>
+</section>
+
+<div class="data-strip">
+  <div class="data-cell"><span class="data-val" data-t="6">0</span><span class="data-key">Apps Deployed</span></div>
+  <div class="data-cell"><span class="data-val" data-t="100">0</span><span class="data-key">% Free</span></div>
+  <div class="data-cell"><span class="data-val">Ω</span><span class="data-key">Civilisation Tier</span></div>
+  <div class="data-cell"><span class="data-val">∞</span><span class="data-key">Ideas Remaining</span></div>
+</div>
+
+<div class="mq-wrap"><div class="mq-track" id="mq"></div></div>
+
+<section id="apps">
+  <div class="sec-head">
+    <span class="sec-tag">// NEURAL APP REGISTRY · EPOCH 12212345654456789866553</span>
+    <h2 class="sec-title">DEPLOYED SYSTEMS</h2>
+  </div>
+  <div class="app-grid" id="grid"></div>
+</section>
+
+<footer>
+  <div class="ft-logo">KS TECH</div>
+  <div class="ft-copy">© EPOCH 12212345654456789866553 · KIRAN SANKAR SYSTEMS · ALL RIGHTS RESERVED ACROSS ALL TIMELINES</div>
+</footer>
+
+<script>
+/* CURSOR */
+const cur=document.getElementById('cur'),curO=document.getElementById('cur-outer');
+const ch=document.getElementById('cur-cross-h'),cv=document.getElementById('cur-cross-v');
+let mx=0,my=0,ox=0,oy=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+  ch.style.top=my+'px';cv.style.left=mx+'px';
+});
+(function lerpCursor(){ox+=(mx-ox)*.1;oy+=(my-oy)*.1;curO.style.left=ox+'px';curO.style.top=oy+'px';requestAnimationFrame(lerpCursor);})();
+
+/* CLOCK */
+function tick(){
+  const n=new Date();
+  document.getElementById('clock').innerHTML=`${n.toLocaleDateString('en-IN')}<br>${n.toLocaleTimeString('en-IN')}<br>KIRAN SANKAR SYS`;
+}
+setInterval(tick,1000);tick();
+
+/* WARP CANVAS */
+const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');
+let W,H,stars=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+window.addEventListener('resize',()=>{resize();initStars();});
+function initStars(){
+  stars=Array.from({length:300},()=>({x:(Math.random()-.5)*W*2,y:(Math.random()-.5)*H*2,z:Math.random()*W,pz:0}));
+  stars.forEach(s=>s.pz=s.z);
+}
+let frame=0;
+function draw(){
+  ctx.fillStyle='rgba(0,0,5,0.18)';ctx.fillRect(0,0,W,H);
+  // horizontal grid
+  ctx.lineWidth=0.4;
+  const gs=60,off=(frame*.5)%gs;
+  for(let y=-gs;y<H+gs;y+=gs){ctx.strokeStyle='rgba(0,255,247,0.05)';ctx.beginPath();ctx.moveTo(0,y+off);ctx.lineTo(W,y+off);ctx.stroke();}
+  // perspective lines
+  for(let x=0;x<=W;x+=gs){ctx.strokeStyle='rgba(255,0,200,0.03)';ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(W/2+(x-W/2)*4,H*1.5);ctx.stroke();}
+  // warp stars
+  stars.forEach(s=>{
+    s.pz=s.z;s.z-=7;
+    if(s.z<=0){s.z=W;s.x=(Math.random()-.5)*W*2;s.y=(Math.random()-.5)*H*2;s.pz=s.z;}
+    const sx=W/2+s.x/s.z*W,sy=H/2+s.y/s.z*H;
+    const px=W/2+s.x/s.pz*W,py=H/2+s.y/s.pz*H;
+    const b=1-s.z/W;
+    const gold=Math.abs(s.x*s.y)%11<1;
+    ctx.strokeStyle=gold?`rgba(255,229,0,${b*.9})`:`rgba(0,255,247,${b*.7})`;
+    ctx.lineWidth=Math.max(.3,b*2);
+    ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(sx,sy);ctx.stroke();
+  });
+  frame++;requestAnimationFrame(draw);
+}
+resize();initStars();draw();
+
+/* MARQUEE */
+const mWords=['KS TECH','EPOCH 12212345654456789866553','QUANTUM SYSTEMS','NEURAL MESH','KIRAN SANKAR','OMEGA TIER','BANKURA ORIGIN','∞ UPTIME','ZERO LATENCY','DEPLOYED'];
+const mq=document.getElementById('mq');
+[...mWords,...mWords,...mWords].forEach(w=>{mq.innerHTML+=`<span class="mq-item">${w}</span><span class="mq-item" style="color:rgba(0,255,247,0.1)">◈</span>`;});
+
+/* APPS */
+const apps=[
+  {name:'KS APPS HUB',desc:'Central command node. All KS Tech systems routed through here.',icon:'🚀',url:'https://kiransankartech.github.io/Kiransankarapps',label:'LAUNCH'},
+  {name:'WILL YOU BE MINE?',desc:'Emotion encoded in quantum circuits. Valentine protocol active.',icon:'💌',url:'https://coinexpresscoin1234official-tech.github.io/Valentine/',label:'OPEN'},
+  {name:'URL VAULT',desc:'Hyperdimensional link repository. Zero retrieval latency.',icon:'🔗',url:'https://coinexpresscoin1234official-tech.github.io/Urls/',label:'ACCESS'},
+  {name:'FOR CHECK',desc:'Rapid verification subroutine. Processes at Planck timescales.',icon:'✅',url:'https://coinexpresscoin1234official-tech.github.io/For-check-/',label:'RUN'},
+  {name:'KIRAN SANKAR',desc:'Origin node. The biological entity behind all KS systems.',icon:'👤',url:'https://coinexpresscoin1234official-tech.github.io/Kiransankar/',label:'VIEW'},
+  {name:'SOFTBOOKS',desc:'Neural knowledge archive. 50+ texts, NCERT matrix, AI suggestions.',icon:'📚',url:'https://kiransankartech.github.io/SoftBooks/',label:'READ'},
+];
+const grid=document.getElementById('grid');
+apps.forEach((app,i)=>{
+  const c=document.createElement('div');
+  c.className='card';c.style.transitionDelay=(i*90)+'ms';
+  c.innerHTML=`
+    <div class="status-dot"></div>
+    <div class="card-sweep"></div>
+    <div class="card-num">SYS·${String(i+1).padStart(2,'0')} · ONLINE · ${(Math.random()*1e9|0).toString(16).toUpperCase()}</div>
+    <span class="card-icon">${app.icon}</span>
+    <div class="card-name">${app.name}</div>
+    <p class="card-desc">${app.desc}</p>
+    <a class="card-btn" href="${app.url}" target="_blank" rel="noopener">
+      <span>${app.label}</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>`;
+  grid.appendChild(c);
+});
+
+/* REVEAL */
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.card').forEach(c=>io.observe(c));
+
+/* COUNTERS */
+const cio=new IntersectionObserver(entries=>{
+  if(!entries[0].isIntersecting)return;
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const t=+el.dataset.t;let n=0;
+    const iv=setInterval(()=>{n=Math.min(n+t/60,t);el.textContent=Math.floor(n);if(n>=t)clearInterval(iv);},16);
+  });
+  cio.disconnect();
+},{threshold:.5});
+cio.observe(document.querySelector('.data-strip'));
+</script>
+</body>
 </html>
